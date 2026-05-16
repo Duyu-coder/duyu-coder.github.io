@@ -1,3 +1,4 @@
+https://duyu-coder.github.io/2026/05/16/hang-compiler-analysis/
 https://duyu-coder.github.io/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/
 https://duyu-coder.github.io/2026/05/15/hello-world/
 https://duyu-coder.github.io/
@@ -5,4 +6,10 @@ https://duyu-coder.github.io/tags/SDN/
 https://duyu-coder.github.io/tags/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B/
 https://duyu-coder.github.io/tags/%E5%BC%82%E6%AD%A5%E6%9E%B6%E6%9E%84/
 https://duyu-coder.github.io/tags/Mininet/
+https://duyu-coder.github.io/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/
+https://duyu-coder.github.io/tags/%E7%BC%96%E8%AF%91%E5%99%A8/
+https://duyu-coder.github.io/tags/Flex/
+https://duyu-coder.github.io/tags/Bison/
+https://duyu-coder.github.io/tags/x86-64%E6%B1%87%E7%BC%96/
 https://duyu-coder.github.io/categories/%E7%BD%91%E7%BB%9C%E7%A9%BA%E9%97%B4%E5%AE%89%E5%85%A8/
+https://duyu-coder.github.io/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/
