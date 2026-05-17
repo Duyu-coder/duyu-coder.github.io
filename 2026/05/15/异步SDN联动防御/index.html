@@ -661,7 +661,6 @@ score <span class="token operator">=</span> graph_scores_dict<span class="token 
 </tr>
 </tbody></table>
 <p>结论：<strong>用两个队列 + 一个共享字典，在清晰性、性能、实现复杂度之间取得了最佳平衡</strong>。这个设计直接支撑了数据平面和控制平面的异步解耦，让整个系统既能实时检测，又能完成复杂的图分析任务。</p>
-<hr>
 <pre class="mermaid">sequenceDiagram
     participant DP as 数据平面进程
     participant EQ as 边队列 (edge_queue)
@@ -717,14 +716,15 @@ subprocess<span class="token punctuation">.</span>run<span class="token punctuat
 <pre class="line-numbers language-none"><code class="language-none">cookie&#x3D;0x0, duration&#x3D;10.2s, priority&#x3D;100,ip,nw_src&#x3D;172.16.0.1 actions&#x3D;drop<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <p>此外，可以通过 <code>ping</code> 测试验证：将主机 IP 手动改为被阻断的 IP，然后 ping 其他主机，会发现 100% 丢包。</p>
-<h3 id="5-3-为什么不用-Ryu-或-ONOS-的-REST-API？"><a href="#5-3-为什么不用-Ryu-或-ONOS-的-REST-API？" class="headerlink" title="5.3 为什么不用 Ryu 或 ONOS 的 REST API？"></a>5.3 为什么不用 Ryu 或 ONOS 的 REST API？</h3><p>为了保持演示环境的轻量和最小依赖，直接调用 <code>ovs-ofctl</code> 是最简单的方式。在实际生产环境中，可以替换为向 SDN 控制器发送 HTTP 请求（例如 <code>requests.post(&#39;http://controller:8080/flows&#39;, json={...})</code>），只需修改 <code>block_ip</code> 函数即可。</p>
+<h3 id="5-3-为什么不用-Ryu-或-ONOS-的-REST-API？"><a href="#5-3-为什么不用-Ryu-或-ONOS-的-REST-API？" class="headerlink" title="5.3 为什么不用 Ryu 或 ONOS 的 REST API？"></a>5.3 为什么不用 Ryu 或 ONOS 的 REST API？</h3><p>为了保持演示环境的轻量和最小依赖，直接调用 <code>ovs-ofctl</code> 是最简单的方式。在实际生产环境中，可以替换为向 SDN 控制器发送 HTTP 请求（例如 <code>requests.post(&#39;http://controller:8080/flows&#39;, json=&#123;...&#125;)</code>），只需修改 <code>block_ip</code> 函数即可。</p>
 <hr>
 <h2 id="6-实时可视化：模拟-IDS-事件面板"><a href="#6-实时可视化：模拟-IDS-事件面板" class="headerlink" title="6. 实时可视化：模拟 IDS 事件面板"></a>6. 实时可视化：模拟 IDS 事件面板</h2><p>为了让运维人员直观看到哪些 IP 被阻断，系统将所有成功阻断记录写入日志文件 <code>/tmp/sdn_blocked.log</code>：</p>
 <pre class="line-numbers language-python" data-language="python"><code class="language-python"><span class="token keyword">with</span> <span class="token builtin">open</span><span class="token punctuation">(</span>BLOCK_LOG<span class="token punctuation">,</span> <span class="token string">"a"</span><span class="token punctuation">)</span> <span class="token keyword">as</span> f<span class="token punctuation">:</span>
     f<span class="token punctuation">.</span>write<span class="token punctuation">(</span><span class="token string-interpolation"><span class="token string">f"</span><span class="token interpolation"><span class="token punctuation">&#123;</span>time<span class="token punctuation">.</span>ctime<span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">&#125;</span></span><span class="token string"> 🚫 Blocked </span><span class="token interpolation"><span class="token punctuation">&#123;</span>ip<span class="token punctuation">&#125;</span></span><span class="token string"> on </span><span class="token interpolation"><span class="token punctuation">&#123;</span>switch<span class="token punctuation">&#125;</span></span><span class="token string">\n"</span></span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
 <p>在另一个终端使用 <code>tail -f /tmp/sdn_blocked.log</code> 即可实时看到新增的阻断事件。这一设计模拟了真实 IDS&#x2F;IPS 的告警控制台，无需反复查询交换机流表。</p>
-<p><img src="/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/Visualization.png" alt="Visualization"></p>
+<img src="/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/Visualization.png" class="" title="异步 SDN 联动防御系统运行状态可视化面板">
+<p><strong>图 1：异步 SDN 联动防御系统运行状态可视化面板</strong>。可视化结果表明，由于采用了数据与控制平面解耦的异步响应架构，全站面板在大流量背景下依然能够无延迟、零丢包地平滑刷新，向网络管理员提供了直观、实时的秒级动态全局防御视角。</p>
 <hr>
 <h2 id="7-实验验证与结果"><a href="#7-实验验证与结果" class="headerlink" title="7. 实验验证与结果"></a>7. 实验验证与结果</h2><h3 id="7-1-环境准备"><a href="#7-1-环境准备" class="headerlink" title="7.1 环境准备"></a>7.1 环境准备</h3><ul>
 <li>Ubuntu 22.04 虚拟机，Mininet 2.3.0，Open vSwitch 3.4.0。</li>
@@ -735,7 +735,9 @@ subprocess<span class="token punctuation">.</span>run<span class="token punctuat
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">sudo</span> mn <span class="token parameter variable">--topo</span> single,3 <span class="token parameter variable">--switch</span> ovsk <span class="token parameter variable">--controller</span> none
 mininet<span class="token operator">></span> <span class="token function">sh</span> ovs-vsctl set-fail-mode s1 standalone<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
 
-<p><img src="/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/mininet-start.png" alt="mininet-start"></p>
+<img src="/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/mininet-start.png" class="" title="Mininet自定义单交换机三主机拓扑初始化">
+<p><strong>图 2：Mininet 自定义单交换机三主机拓扑初始化</strong>。</p>
+<p>本图展示了仿真网络环境的启动状态。通过指定 <code>--switch ovsk</code> 实例化 Open vSwitch，并使用 <code>set-fail-mode s1 standalone</code> 将核心交换机 <code>s1</code> 强制配置为独立转发模式。这一设计是系统异步联动防御的关键前提：在控制器尚未下发特定的流表阻断规则、或者检测平面处于离线计算状态时，交换机依然具备基础的 L2&#x2F;L3 报文转发能力，从而有效避免了传统同步安全架构中因控制器阻塞而导致的业务全网中断。</p>
 <p><strong>终端 B – 启动实时监控</strong></p>
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash"><span class="token function">touch</span> /tmp/sdn_blocked.log
 <span class="token function">tail</span> <span class="token parameter variable">-f</span> /tmp/sdn_blocked.log<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
@@ -744,13 +746,16 @@ mininet<span class="token operator">></span> <span class="token function">sh</sp
 <pre class="line-numbers language-bash" data-language="bash"><code class="language-bash">python3 model_async.py<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
 
 <h3 id="7-3-输出与结果"><a href="#7-3-输出与结果" class="headerlink" title="7.3 输出与结果"></a>7.3 输出与结果</h3><p><strong>终端 B 输出（实时阻断事件）</strong></p>
-<p><img src="/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/real-time.png" alt="real-time"></p>
+<img src="/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/real-time.png" class="" title="数据平面异步联动引发的控制平面实时阻断日志">
+<p><strong>图 3：数据平面异步联动引发的控制平面实时阻断日志</strong>。</p>
+<p>整个“检测-入队-下发”的流水线在后台完全异步运行，流表的实时阻断事件与大流量攻击流的产生并无同步阻塞关系。</p>
 <pre class="line-numbers language-none"><code class="language-none">Fri May 15 16:30:29 2026 🚫 Blocked 172.16.0.1 on s1
 Fri May 15 16:30:30 2026 🚫 Blocked 192.168.10.50 on s1
 Fri May 15 16:30:30 2026 🚫 Blocked 192.168.10.50 on s1<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
 
 <p><strong>终端 C 关键日志</strong></p>
-<p><img src="/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/log.png" alt="log"></p>
+<img src="/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/log.png" class="" title="数据平面轻量化多特征流检测实时日志">
+<p><strong>图 4：数据平面轻量化多特征流检测实时日志</strong>。</p>
 <pre class="line-numbers language-none"><code class="language-none">[INFO] Normal flows: 15, Attack flows: 2 (from 2 distinct source IPs)
 [INFO] Control plane started
 [INFO] Data plane: models loaded
@@ -760,7 +765,8 @@ Processing flows:  24% [ALERT] risk&#x3D;0.583 src&#x3D;172.16.0.1 dst&#x3D;192.
 Data plane terminated.<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
 <p>在终端 A 中执行 <code>sh ovs-ofctl dump-flows s1</code> 确认流表存在。</p>
-<p><img src="/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/flow-table.png" alt="flow-table"></p>
+<img src="/2026/05/15/%E5%BC%82%E6%AD%A5SDN%E8%81%94%E5%8A%A8%E9%98%B2%E5%BE%A1/flow-table.png" class="" title="Open vSwitch (OVS) 底层硬阻断流表条目验证">
+<p><strong>图 5：Open vSwitch (OVS) 底层硬阻断流表条目验证</strong>。</p>
 <p>可以看到丢弃(drop)了两条攻击流量。</p>
 <hr>
 <h2 id="8-总结：如何将入侵检测端与-SDN-响应治理协调起来"><a href="#8-总结：如何将入侵检测端与-SDN-响应治理协调起来" class="headerlink" title="8. 总结：如何将入侵检测端与 SDN 响应治理协调起来"></a>8. 总结：如何将入侵检测端与 SDN 响应治理协调起来</h2><p>本系统的核心思想是<strong>将“检测”与“响应”彻底解耦</strong>：</p>

@@ -1,0 +1,1427 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="如何精炼论文核心矛盾？基于6G背景的科研复盘, Cyber Security, Jinhang Lian, 广州大学">
+    <meta name="description" content="如何确定论文要解决的核心问题？一个基于6G URLLC的案例摘要：确定“要解决什么问题”是学术写作中关键也容易被卡住的一步。本文以一篇6G入侵检测论文的修改过程为例，完整还原从“读背景→查文献→跑实验→凝练矛盾”的方法论，作为对该科研项目的">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>如何精炼论文核心矛盾？基于6G背景的科研复盘 | Jinhang Lian&#39;s Blog</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    
+
+
+    <!-- bg-cover style     -->
+
+
+
+<link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+<link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+<link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+<link rel="stylesheet" type="text/css" href="/css/matery.css">
+<link rel="stylesheet" type="text/css" href="/css/my.css">
+<link rel="stylesheet" type="text/css" href="/css/dark.css" media="none" onload="if(media!='all')media='all'">
+
+
+
+
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+    <link rel="stylesheet" href="/css/post.css">
+
+
+
+
+    
+        <link rel="stylesheet" type="text/css" href="/css/reward.css">
+    
+
+
+
+    <script src="/libs/jquery/jquery-3.6.0.min.js"></script>
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">Jinhang Lian&#39;s Blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/friends" class="waves-effect waves-light">
+      
+      <i class="fas fa-address-book" style="zoom: 0.6;"></i>
+      
+      <span>友情链接</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/resume.pdf" class="waves-effect waves-light">
+      
+      <i class="fas fa-file-pdf" style="zoom: 0.6;"></i>
+      
+      <span>Resume</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+  <li>
+    <a href="javascript:;" class="waves-effect waves-light" onclick="switchNightMode()" title="深色/浅色模式" >
+      <i id="sum-moon-icon" class="fas fa-sun" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">Jinhang Lian&#39;s Blog</div>
+        <div class="logo-desc">
+            
+            Rank: 5/107 | Cyber Security Student
+            
+        </div>
+    </div>
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			留言板
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/friends" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-address-book"></i>
+			
+			友情链接
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/resume.pdf" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-file-pdf"></i>
+			
+			Resume
+		</a>
+          
+        </li>
+        
+        
+        <li><div class="divider"></div></li>
+        <li>
+            <a href="https://github.com/blinkfox/hexo-theme-matery" class="waves-effect waves-light" target="_blank">
+                <i class="fab fa-github-square fa-fw"></i>Fork Me
+            </a>
+        </li>
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+            <style>
+    .nav-transparent .github-corner {
+        display: none !important;
+    }
+
+    .github-corner {
+        position: absolute;
+        z-index: 10;
+        top: 0;
+        right: 0;
+        border: 0;
+        transform: scale(1.1);
+    }
+
+    .github-corner svg {
+        color: #0f9d58;
+        fill: #fff;
+        height: 64px;
+        width: 64px;
+    }
+
+    .github-corner:hover .octo-arm {
+        animation: a 0.56s ease-in-out;
+    }
+
+    .github-corner .octo-arm {
+        animation: none;
+    }
+
+    @keyframes a {
+        0%,
+        to {
+            transform: rotate(0);
+        }
+        20%,
+        60% {
+            transform: rotate(-25deg);
+        }
+        40%,
+        80% {
+            transform: rotate(10deg);
+        }
+    }
+</style>
+
+<a href="https://github.com/blinkfox/hexo-theme-matery" class="github-corner tooltipped hide-on-med-and-down" target="_blank"
+   data-tooltip="Fork Me" data-position="left" data-delay="50">
+    <svg viewBox="0 0 250 250" aria-hidden="true">
+        <path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"></path>
+        <path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2"
+              fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"></path>
+        <path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z"
+              fill="currentColor" class="octo-body"></path>
+    </svg>
+</a>
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/15.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">如何精炼论文核心矛盾？基于6G背景的科研复盘</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E5%AD%A6%E6%9C%AF%E5%86%99%E4%BD%9C/">
+                                <span class="chip bg-color">学术写作</span>
+                            </a>
+                        
+                            <a href="/tags/6G%E5%AE%89%E5%85%A8/">
+                                <span class="chip bg-color">6G安全</span>
+                            </a>
+                        
+                            <a href="/tags/%E8%AE%BA%E6%96%87%E6%91%98%E8%A6%81/">
+                                <span class="chip bg-color">论文摘要</span>
+                            </a>
+                        
+                            <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/">
+                                <span class="chip bg-color">方法论</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/" class="post-category">
+                                科研项目复盘
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2026-05-16
+                </div>
+                
+
+                
+
+                
+
+                
+
+                
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+        <!-- 是否加载使用自带的 prismjs. -->
+        <link rel="stylesheet" href="/libs/prism/prism.min.css">
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <h1 id="如何确定论文要解决的核心问题？一个基于6G-URLLC的案例"><a href="#如何确定论文要解决的核心问题？一个基于6G-URLLC的案例" class="headerlink" title="如何确定论文要解决的核心问题？一个基于6G URLLC的案例"></a>如何确定论文要解决的核心问题？一个基于6G URLLC的案例</h1><p><strong>摘要：确定“要解决什么问题”是学术写作中关键也容易被卡住的一步。本文以一篇6G入侵检测论文的修改过程为例，完整还原从“读背景→查文献→跑实验→凝练矛盾”的方法论，作为对该科研项目的复盘总结之一。</strong></p>
+<hr>
+<h2 id="起点：摘要中的问题不够明确"><a href="#起点：摘要中的问题不够明确" class="headerlink" title="起点：摘要中的问题不够明确"></a>起点：摘要中的问题不够明确</h2><p>我最初拿到的是一个简练的技术方案框架，具体是6G背景下的入侵检测。等到我跑完实验、完成初稿后，老师的反馈是：</p>
+<blockquote>
+<p><strong>“In the abstract you need to mention which problem you need to solve.”</strong></p>
+</blockquote>
+<p>现在回过头来看，当时确实没有具体提到是”which problem”，毕竟当时只是粗略地说了一句：</p>
+<blockquote>
+<p>传统入侵检测系统（IDS）因数据不确定性及复杂攻击拓扑结构而面临严峻挑战。</p>
+</blockquote>
+<p>确实是泛泛而谈，更没有结合论文背景——6G背景下的入侵检测框架而具体分析。老师随后举了例子：</p>
+<blockquote>
+<p>for example like effective feature selection problem, 6G network communication optimization etc.</p>
+</blockquote>
+<p>特征选择还是网络通信优化？又或者是其他的角度？诚实地说，当时因为框架中有了较完善的步骤，又赶时间、想要先早点完成模型原型，所以论文初稿确实比较粗糙，对参考文献的收集、阅读也确实不够到位。</p>
+<p>于是进行了以下尝试：</p>
+<hr>
+<h2 id="第一步：查阅文献，提取6G特点"><a href="#第一步：查阅文献，提取6G特点" class="headerlink" title="第一步：查阅文献，提取6G特点"></a>第一步：查阅文献，提取6G特点</h2><p><strong>我的思路是，可以看看6G实现了什么新东西，再看看为了实现新功能而需要什么代价，最后围绕该代价入手。</strong></p>
+<h3 id="一、如何查找文献"><a href="#一、如何查找文献" class="headerlink" title="一、如何查找文献"></a>一、如何查找文献</h3><p>文献方面，我们可以从综述或者白皮书等入手，以便对6G有一个更深入更全面的了解；可以让AI帮忙整理检索的关键词，然后在谷歌学术上选择“只看综述”，根据引用量、文章标题等综合考虑。</p>
+<h3 id="二、如何提取信息"><a href="#二、如何提取信息" class="headerlink" title="二、如何提取信息"></a>二、如何提取信息</h3><p>综述动辄三十四页，如何快速定位并提取我们需要的信息，这也是一大问题。接下来我们以其中一篇（Chowdhury）为例进行分析：</p>
+<h4 id="1-看摘要，大致了解问题"><a href="#1-看摘要，大致了解问题" class="headerlink" title="1.看摘要，大致了解问题"></a>1.看摘要，大致了解问题</h4><p>首先我们可以先看摘要，里面已经明确：6G需解决更高的系统容量、更高的数据传输速率、更低的延迟、更强的安全性以及比5G更优的服务质量（QoS）等若干核心问题。</p>
+<blockquote>
+<p>Beyond 5G,  some fundamental issues that need to be addressed are higher system capacity, higher data rate, lower latency, higher security, and improved quality of service (QoS) compared to the 5G system. </p>
+</blockquote>
+<h4 id="2-看介绍，理清文章结构"><a href="#2-看介绍，理清文章结构" class="headerlink" title="2.看介绍，理清文章结构"></a>2.看介绍，理清文章结构</h4><p>​	之后看介绍部分，着重看最后几句，得到全文脉络：</p>
+<blockquote>
+<p>The rest of the paper is organized as follows. Section II presents the growing trends in the use of mobile communications. The expected service requirements and the network characteristics in 6G communication systems are presented in Section III. The possible network architecture with the applications of future 6G communication systems is presented in Section IV.  The potential  critical  technologies for the development  of the 6G system are briefly discussed in Section V. In Section VI, we discuss various research activities on 6G. Section VII sets out the main challenges and research directions for achieving6G goals. Finally, we draw our conclusions in Section VIII. For easy referencing, Table1summarizes the various abbreviations used in this paper.</p>
+</blockquote>
+<p>去掉背景介绍、趋势、研究活动等，由此可知可以关注下面几节：</p>
+<ul>
+<li><strong>Section III (Requirements &amp; Characteristics):</strong> 这里可能会给出具体指标要求，特别是可以结合图表分析数据。</li>
+<li><strong>Section IV (Architecture &amp; Applications):</strong> 对应新的架构和场景，可能会顺带提到不同应用场景下的差异和要求，相对不明显。</li>
+<li><strong>Section V (Critical Technologies):</strong> 关键技术，类似Ⅳ节，但可能会更具体，中等关注。</li>
+<li><strong>Section VII (Main Challenges &amp; Research Directions):</strong> 最直接的部分。</li>
+</ul>
+<p><strong>所以，最重要的是 Section VII（Challenges），其次是 Section III（Requirements）</strong>。按照阅读顺序，可以如下操作：</p>
+<h5 id="①定位到-Section-III，快速找到-KPI-性能对比等图表"><a href="#①定位到-Section-III，快速找到-KPI-性能对比等图表" class="headerlink" title="①定位到 Section III，快速找到 KPI 性能对比等图表"></a>①定位到 <strong>Section III</strong>，快速找到 <strong>KPI 性能对比等图表</strong></h5><img src="/2026/05/16/how-to-define-core-problem-in-abstract/5G%20vs%206G.png" class="" title="5G与6G关键网络指标对比（时延约束）">
+<p><strong>图 1：5G 与 6G 关键网络指标对比</strong>。本图直观呈现了从 5G 到 6G 演进过程中，超可靠低延迟通信（URLLC）对时延硬约束的量级跃升。</p>
+<p>可以看到对时延确实有显著的要求，需要降至1ms以内；还有一些功能上的拓展可以按需查看，比如Mobility support（流动性支持）相关性不大，而Autonomous vehicle（自动驾驶）变成”Fully”支持，就可能对实时感知乃至入侵检测的时延、闭环防御等有了更高的要求。</p>
+<h5 id="②定位到Section-VII，找到主要挑战并筛选"><a href="#②定位到Section-VII，找到主要挑战并筛选" class="headerlink" title="②定位到Section VII，找到主要挑战并筛选"></a>②定位到<strong>Section VII</strong>，找到主要挑战并筛选</h5><p>文中主要的挑战都在段首用斜体标注出来了，我们可以先整理并排除其中显然不在同一领域（网络空间安全方面）的部分：</p>
+<blockquote>
+<p>1.High Propagation and Atmospheric Absorption of THz: </p>
+<p>2.Complexity in Resource Management for 3D Networking: </p>
+<p>3.Heterogeneous Hardware Constraints:</p>
+<p>4.Autonomous Wireless Systems:</p>
+<p>5.Modeling of Sub-mmWave (THz) Frequencies:</p>
+<p>6.Device Capability:</p>
+<p>7.High-Capacity Backhaul Connectivity:  </p>
+<p>8.Spectrum and Interference Management: </p>
+<p>9.Beam Management in THz Communications: </p>
+<p>10.Physical-Layer Security: </p>
+<p>11.Planning of Economic Prospect:</p>
+</blockquote>
+<p>标题中带有 <strong>THz（太赫兹）、Sub-mmWave（亚毫米波）、Propagation（传播）、Absorption（吸收）、Beam（波束）、Channel Modeling（信道建模）</strong>，都很可能属于通信而不是计算机的范畴。照此思路可以划掉以下 5 个标题：</p>
+<ol>
+<li><del>High Propagation and Atmospheric Absorption of THz</del>（太赫兹的大气吸收：这是<strong>无线电物理与材料学</strong>解决的）</li>
+<li><del>Modeling of Sub-mmWave (THz) Frequencies</del>（频段信道建模：这是<strong>应用数学和电磁场</strong>领域要考虑的）</li>
+<li><del>Beam Management in THz Communications</del>（太赫兹波束管理：这是硬件天线和<strong>物理层阵列信号处理</strong>干的事）</li>
+<li><del>High-Capacity Backhaul Connectivity</del>（高容量回传连接：这是铺设光纤还是激光无线传输的<strong>工程硬件问题</strong>）</li>
+<li><del>Planning of Economic Prospect</del>（经济前景规划：这是<strong>电信运营商</strong>算账用的）</li>
+<li><del>Spectrum and Interference Management</del>（频谱分配等通信方面的问题）</li>
+</ol>
+<p>剩下的标题如下，查看对应内容，不管协议等更底层部分的挑战。</p>
+<blockquote>
+<p>2.Complexity in Resource Management for 3D Networking: </p>
+<p>3.Heterogeneous Hardware Constraints:</p>
+<p>4.Autonomous Wireless Systems:</p>
+<p>6.Device Capability:</p>
+<p>10.Physical-Layer Security: </p>
+</blockquote>
+<p>不得不承认，其中相关的信息也不多，只有在’Physical-Layer Security’一节中，提到在网络安全自动化领域引入机器学习实现检测及防范攻击的必要性：</p>
+<blockquote>
+<p> Utilization of machine learning in automated security in the field of network virtualization and softwarization will help to detect and prevent attacks in an optimal way.</p>
+</blockquote>
+<p>也没有关系，还可以继续找两三篇6G综述，分析后整合。</p>
+<p>当然，一边定位也可以一边看论文中的图表，大部分都能看出来含义；确实不理解某张图在讲什么，就把图片标题翻译一下就好，这样及不会漏掉比较关键的章节，也能对全文脉络有一个更好的理解。</p>
+<h5 id="③整理总结"><a href="#③整理总结" class="headerlink" title="③整理总结"></a>③整理总结</h5><p><strong>核心痛点分析</strong></p>
+<pre class="line-numbers language-c" data-language="c"><code class="language-c"><span class="token number">1.</span><span class="token punctuation">[</span><span class="token number">6</span>G 新应用场景<span class="token operator">:</span> uMTC<span class="token operator">/</span>自动驾驶<span class="token punctuation">]</span> ──<span class="token operator">></span> 要求极速防御
+       │
+<span class="token number">2.</span><span class="token punctuation">[</span><span class="token number">6</span>G 传输层硬指标<span class="token operator">:</span> <span class="token number">0.1</span>ms 时延<span class="token punctuation">]</span> ──<span class="token operator">></span> 压缩了安全检测的时间红线，IDS 不能拖网络后腿
+       │
+<span class="token number">3.</span><span class="token punctuation">[</span><span class="token number">6</span>G 架构代价<span class="token operator">:</span> 算力下沉至异构边缘<span class="token punctuation">]</span> ──<span class="token operator">></span> 重型算法无法部署，边缘系统需要轻量化IDS
+       │
+<span class="token number">4.</span>【最终核心冲突】：高计算开销vs弱算力、高时效要求<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<ul>
+<li><p>网络连接的主体由“看网页的人”转变为“高速运动的物理机器”。在这类闭环控制场景下,攻击的传递速度更快、危害更大，需要在更短时间内完成检测。</p>
+</li>
+<li><p>6G 的硬性基准指标——端到端时延 <strong>$&lt; 1\text{ ms}$</strong>，用户面延迟低至 <strong>$0.1\text{ ms}$（100微秒）</strong></p>
+</li>
+<li><p>为了消解向核心网传输的时延，6G 的关键赋能技术是将计算、推理能力全面下沉的<strong>边缘智能（Edge Intelligence）</strong>，在这些异构终端上难以运行复杂的算法。</p>
+</li>
+</ul>
+<p><strong>最终的问题定义</strong></p>
+<p>基于上述完整的分析，本研究需要解决的 6G 安全领域核心学术与工程问题正式定义如下：</p>
+<blockquote>
+<p>**在 6G 网络关键任务型机器通信（uMTC）高实时、高物理破坏风险的背景下，如何在保持高精度、高泛化异常检测能力的前提下，使其能够在算力与内存受限的边缘硬件环境中实现低推理时延，即实现轻量化算法，达到端到端时延 <strong>$&lt; 1\text{ ms}$</strong>，用户面延迟低至 **$0.1\text{ ms}$ <strong>的要求。</strong></p>
+</blockquote>
+<hr>
+<h2 id="第二步：查文献，SOTA能否解决"><a href="#第二步：查文献，SOTA能否解决" class="headerlink" title="第二步：查文献，SOTA能否解决"></a>第二步：查文献，SOTA能否解决</h2><p>接着调研相关文献，发现确实没有兼顾。</p>
+<table>
+<thead>
+<tr>
+<th align="left">模型类型</th>
+<th align="left">单样本推理时延</th>
+<th align="left">理论时间复杂度</th>
+<th align="left">满足 6G &lt;1 ms?</th>
+<th align="left">备注</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">CapsNet + BiLSTM</td>
+<td align="left">❌ 未提供</td>
+<td align="left">O(L·h² + r·n_caps²·d_caps)</td>
+<td align="left">❌ (CPU 估算 10–50 ms)</td>
+<td align="left">仅分类准确率，无时间测量</td>
+</tr>
+<tr>
+<td align="left">Fuzzy Graph Attention Network</td>
+<td align="left">❌ 未提供</td>
+<td align="left">O(&#124;V&#124;·d² + &#124;E&#124;·d)</td>
+<td align="left">❌ (GPU 估算 1–5 ms)</td>
+<td align="left">无推理时间数据</td>
+</tr>
+<tr>
+<td align="left">MIX_LSTM (BiLSTM)</td>
+<td align="left">❌ 未提供 (仅总 CT&#x3D;4.07s)</td>
+<td align="left">O(L·h·(h+f)) ≈ O(L·h²)</td>
+<td align="left">❓ 可能 (FLOPs&#x3D;213)</td>
+<td align="left">无单样本时延，需换算</td>
+</tr>
+<tr>
+<td align="left">HGNN (GAT) + LLM</td>
+<td align="left">✅ <strong>6.563 ms</strong> (HGNN 部分)</td>
+<td align="left">O(&#124;V&#124;·d² + &#124;E&#124;·d)</td>
+<td align="left">❌ (6.56 ms &gt; 1 ms)</td>
+<td align="left">LLM 解释额外 ~6s，不影响检测</td>
+</tr>
+<tr>
+<td align="left">动态构图 + GCN</td>
+<td align="left">❌ 未提供</td>
+<td align="left">直推式，难以单样本</td>
+<td align="left">❌ (不适用)</td>
+<td align="left">模型非流式实时推理</td>
+</tr>
+<tr>
+<td align="left">直觉模糊集 + 距离度量</td>
+<td align="left">❌ 未提供</td>
+<td align="left">O(n) (n≈30)</td>
+<td align="left">✅ 理论上 &lt;0.01 ms</td>
+<td align="left">极轻量，但无实测</td>
+</tr>
+<tr>
+<td align="left">DNN + BiLSTM + 量化</td>
+<td align="left">✅ <strong>71–96 μs</strong> (换算)</td>
+<td align="left">FLOPs 2,784–7,700</td>
+<td align="left">✅ <strong>是</strong></td>
+<td align="left">CPU 实测，唯一确凿满足</td>
+</tr>
+<tr>
+<td align="left">动态图 GCN</td>
+<td align="left">✅ <strong>2.5 ms</strong> (10k 节点)</td>
+<td align="left">O(&#124;V&#124;·d² + &#124;E&#124;·d)</td>
+<td align="left">❌ (2.5 ms)</td>
+<td align="left">GPU 实测，小图可能 &lt;1 ms</td>
+</tr>
+<tr>
+<td align="left">PCA + Random Forest</td>
+<td align="left">✅ <strong>&lt;1 µs &#x2F; &lt;1 ms</strong> (标称)</td>
+<td align="left">O(k·d + T·D)</td>
+<td align="left">✅ <strong>是</strong></td>
+<td align="left">亚毫秒级，实测推断</td>
+</tr>
+<tr>
+<td align="left">LSTM (64 单元)</td>
+<td align="left">❌ 仅总响应时间 1.49 s</td>
+<td align="left">O(L·h²)</td>
+<td align="left">❌ (整体太慢)</td>
+<td align="left">未分离模型推理时延</td>
+</tr>
+<tr>
+<td align="left">轻量级神经网络 + 符号规则 + 知识蒸馏</td>
+<td align="left">✅ <strong>14.8 ms</strong> (学生模型)</td>
+<td align="left">O(N_p + L·r)</td>
+<td align="left">❌ (14.8 ms)</td>
+<td align="left">边缘实时，未达亚毫秒</td>
+</tr>
+<tr>
+<td align="left">多级特征选择 + 随机森林 + 模糊</td>
+<td align="left">❌ 未提供</td>
+<td align="left">O(T·D)</td>
+<td align="left">❓ 可能 (未测)</td>
+<td align="left">仅分类性能，无延迟数据</td>
+</tr>
+<tr>
+<td align="left">集成学习 (DT,RF,KNN) + 模糊推理</td>
+<td align="left">✅ <strong>124–143 ms</strong> (模糊阶段)</td>
+<td align="left">O(81规则)</td>
+<td align="left">❌ (124 ms)</td>
+<td align="left">模糊推理异常慢</td>
+</tr>
+</tbody></table>
+<hr>
+<h2 id="第三步：自查模型，着手优化"><a href="#第三步：自查模型，着手优化" class="headerlink" title="第三步：自查模型，着手优化"></a>第三步：自查模型，着手优化</h2><p>回顾消融实验，虽然自己的模型已经表现的不错，但是针对”时延”还是可以有优化空间。在指导教师的建议与进一步的工程实测下，最终成功将某模块的时间复杂度降低：$O(n^2) \rightarrow O(n\log n)$，实测单流检测延迟也达到了理想效果。</p>
+<hr>
+<h2 id="第四步：撰写摘要"><a href="#第四步：撰写摘要" class="headerlink" title="第四步：撰写摘要"></a>第四步：撰写摘要</h2><p>有了上述三步，我开始撰写最终的问题陈述。最终，摘要的第一句话被改成了：</p>
+<blockquote>
+<p><strong>”While  6G  architectures  enable  edge-native  intelligence, they introduce a critical challenge: the inherent conflict between  high  detection  precision  and  the  deterministic  sub<br>millisecond  latency  required  by  Ultra-Reliable  Low-Latency Communications  (URLLC).  To  solve  this  problem,  this  paper<br>proposes …“</strong> </p>
+</blockquote>
+<p>最终解决了问题，我得以进一步推进工作。</p>
+<hr>
+<h2 id="可以复用的方法论"><a href="#可以复用的方法论" class="headerlink" title="可以复用的方法论"></a>可以复用的方法论</h2><p>从这次经历中，我整理出一个可复用的流程，用于确定一篇论文的核心问题：</p>
+<ol>
+<li><strong>提取目标场景的硬约束</strong>  <ul>
+<li>找到场景里不可妥协的指标上限或下限（比如6G URLLC的&lt;100 μs）。  </li>
+<li>来源：标准文档、综述、顶会论文中的“requirements”部分。</li>
+</ul>
+</li>
+<li><strong>对比现有方案的缺陷</strong>  <ul>
+<li>至少找两类代表方法，分别记录它们的优势、劣势，以及与硬约束的差距。</li>
+</ul>
+</li>
+<li><strong>验证缺陷，自查模型并优化</strong>  <ul>
+<li>时间够的话，最好复现两类方法的最小可验证版本，测量它们在相同数据集上的关键指标（精度&#x2F;延迟&#x2F;召回率等），验证缺陷是否存在。参考文献中有提到这些量化指标的话，也可以省略这一步。  </li>
+<li>自查自己的方案是否能弥补，并着手优化、检验效果。</li>
+</ul>
+</li>
+<li><strong>整理后起草摘要</strong></li>
+</ol>
+<hr>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>一篇论文的“问题”不是形容词堆砌（“复杂”、“动态”、“严峻”），而是一个<strong>可以被客观描述、被实验验证、且存在改进空间的矛盾</strong>。</p>
+<p>如果你也在写论文，可以试试这个方法：不看自己做了什么，先看场景的硬约束是什么，再看现有方法卡在哪。然后问自己：<strong>如果只能改一个指标，我会改哪个？</strong> 这个答案通常就是你的问题所在。</p>
+<hr>
+<p><strong>参考文献</strong><br>[1] Chowdhury M. Z., et al. 6G wireless communication systems: Applications, requirements, technologies, challenges, and research directions. <em>IEEE Open Journal of the Communications Society</em>, 2020.<br>[2] Mahmood N. H., et al. Six key enablers for machine type communication in 6G. <em>6G White Paper</em>, 2019.<br>[3] De Alwis, Chamitha, et al. “Survey on 6G frontiers: Trends, applications, requirements, technologies and future research.” <em>IEEE Open Journal of the Communications Society</em> 2 (2021): 836-886.</p>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">Jinhang Lian</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://duyu-coder.github.io/2026/05/16/how-to-define-core-problem-in-abstract/">https://duyu-coder.github.io/2026/05/16/how-to-define-core-problem-in-abstract/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">Jinhang Lian</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E5%AD%A6%E6%9C%AF%E5%86%99%E4%BD%9C/">
+                                    <span class="chip bg-color">学术写作</span>
+                                </a>
+                            
+                                <a href="/tags/6G%E5%AE%89%E5%85%A8/">
+                                    <span class="chip bg-color">6G安全</span>
+                                </a>
+                            
+                                <a href="/tags/%E8%AE%BA%E6%96%87%E6%91%98%E8%A6%81/">
+                                    <span class="chip bg-color">论文摘要</span>
+                                </a>
+                            
+                                <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/">
+                                    <span class="chip bg-color">方法论</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/reward/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/reward/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
+            <div class="card">
+                <a href="/2026/05/16/how-to-define-core-problem-in-abstract/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/15.jpg" class="responsive-img" alt="如何精炼论文核心矛盾？基于6G背景的科研复盘">
+                        
+                        <span class="card-title">如何精炼论文核心矛盾？基于6G背景的科研复盘</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-05-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E7%A7%91%E7%A0%94%E9%A1%B9%E7%9B%AE%E5%A4%8D%E7%9B%98/" class="post-category">
+                                    科研项目复盘
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E5%AD%A6%E6%9C%AF%E5%86%99%E4%BD%9C/">
+                        <span class="chip bg-color">学术写作</span>
+                    </a>
+                    
+                    <a href="/tags/6G%E5%AE%89%E5%85%A8/">
+                        <span class="chip bg-color">6G安全</span>
+                    </a>
+                    
+                    <a href="/tags/%E8%AE%BA%E6%96%87%E6%91%98%E8%A6%81/">
+                        <span class="chip bg-color">论文摘要</span>
+                    </a>
+                    
+                    <a href="/tags/%E6%96%B9%E6%B3%95%E8%AE%BA/">
+                        <span class="chip bg-color">方法论</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2026/05/16/hang-compiler-analysis/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="基于Flex与Bison实现Hang语言编译器及编译原理简析">
+                        
+                        <span class="card-title">基于Flex与Bison实现Hang语言编译器及编译原理简析</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2026-05-16
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A7%91%E5%AD%A6%E4%B8%8E%E6%8A%80%E6%9C%AF/" class="post-category">
+                                    计算机科学与技术
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/">
+                        <span class="chip bg-color">编译原理</span>
+                    </a>
+                    
+                    <a href="/tags/%E7%BC%96%E8%AF%91%E5%99%A8/">
+                        <span class="chip bg-color">编译器</span>
+                    </a>
+                    
+                    <a href="/tags/Flex/">
+                        <span class="chip bg-color">Flex</span>
+                    </a>
+                    
+                    <a href="/tags/Bison/">
+                        <span class="chip bg-color">Bison</span>
+                    </a>
+                    
+                    <a href="/tags/x86-64%E6%B1%87%E7%BC%96/">
+                        <span class="chip bg-color">x86-64汇编</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+
+  <!-- 是否加载使用自带的 prismjs. -->
+  <script type="text/javascript" src="/libs/prism/prism.min.js"></script>
+
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+        <link rel="stylesheet" href="/libs/aplayer/APlayer.min.css">
+<style>
+    .aplayer .aplayer-lrc p {
+        
+        display: none;
+        
+        font-size: 12px;
+        font-weight: 700;
+        line-height: 16px !important;
+    }
+
+    .aplayer .aplayer-lrc p.aplayer-lrc-current {
+        
+        display: none;
+        
+        font-size: 15px;
+        color: #42b983;
+    }
+
+    
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+        left: -66px !important;
+    }
+
+    .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+        left: 0px !important;
+    }
+
+    
+</style>
+<div class="">
+    
+    <div class="row">
+        <meting-js class="col l8 offset-l2 m10 offset-m1 s12"
+                   server="netease"
+                   type="playlist"
+                   id="503838841"
+                   fixed='true'
+                   autoplay='false'
+                   theme='#42b983'
+                   loop='all'
+                   order='random'
+                   preload='auto'
+                   volume='0.7'
+                   list-folded='true'
+        >
+        </meting-js>
+    </div>
+</div>
+
+<script src="/libs/aplayer/APlayer.min.js"></script>
+<script src="/libs/aplayer/Meting.min.js"></script>
+
+    
+
+    <div class="container row center-align"
+         style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2026</span>
+            
+            <a href="/about" target="_blank">Jinhang Lian</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            
+            <br>
+            
+            
+            
+                
+            
+            
+                <span id="busuanzi_container_site_pv">
+                &nbsp;|&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;
+                    <span id="busuanzi_value_site_pv" class="white-color"></span>
+            </span>
+            
+            
+                <span id="busuanzi_container_site_uv">
+                &nbsp;|&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;
+                    <span id="busuanzi_value_site_uv" class="white-color"></span>
+            </span>
+            
+            <br>
+
+            <!-- 运行天数提醒. -->
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/blinkfox" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1181062873@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=1181062873" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 1181062873" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 白天和黑夜主题 -->
+<div class="stars-con">
+    <div id="stars"></div>
+    <div id="stars2"></div>
+    <div id="stars3"></div>  
+</div>
+
+<script>
+    function switchNightMode() {
+        $('<div class="Cuteen_DarkSky"><div class="Cuteen_DarkPlanet"></div></div>').appendTo($('body')),
+        setTimeout(function () {
+            $('body').hasClass('DarkMode') 
+            ? ($('body').removeClass('DarkMode'), localStorage.setItem('isDark', '0'), $('#sum-moon-icon').removeClass("fa-sun").addClass('fa-moon')) 
+            : ($('body').addClass('DarkMode'), localStorage.setItem('isDark', '1'), $('#sum-moon-icon').addClass("fa-sun").removeClass('fa-moon')),
+            
+            setTimeout(function () {
+            $('.Cuteen_DarkSky').fadeOut(1e3, function () {
+                $(this).remove()
+            })
+            }, 2e3)
+        })
+    }
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    
+        <!-- <script src='https://unpkg.com/mermaid@latest/dist/mermaid.min.js'></script> -->
+        <script src='/libs/mermaid/mermaid.min.js'></script>
+        <script>
+          if (window.mermaid) {
+            mermaid.initialize({theme: 'forest'});
+          }
+        </script>
+    
+
+    
+    
+    
+
+    <!-- 雪花特效 -->
+    
+
+    <!-- 鼠标星星特效 -->
+    
+
+     
+        <script src="https://ssl.captcha.qq.com/TCaptcha.js"></script>
+        <script src="/libs/others/TencentCaptcha.js"></script>
+        <button id="TencentCaptcha" data-appid="xxxxxxxxxx" data-cbfn="callback" type="button" hidden></button>
+    
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
